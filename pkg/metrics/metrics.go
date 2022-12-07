@@ -187,7 +187,7 @@ var (
 	milestoneIssues = prometheus.NewDesc(
 		"github_exporter_milestone_issues",
 		"Total number issues (includes pull requests) belonging to a milestone, grouped by kind and state",
-		[]string{"repo", "number", "kind", "state"},
+		[]string{"repo", "number", "T", "state"},
 		nil,
 	)
 

@@ -1305,22 +1305,22 @@
           "strokeWidth": "3",
           "targets": [
             {
-              "expr": "sum by (kind) (github_exporter_issue_info{repo=~\"$repo\",state=\"open\",kind!=\"\"})",
+              "expr": "sum by (T) (github_exporter_issue_info{repo=~\"$repo\",state=\"open\",T!=\"\"})",
               "interval": "",
-              "legendFormat": "{{ kind }}",
+              "legendFormat": "{{ T }}",
               "refId": "G"
             },
             {
-              "expr": "sum by (kind) (github_exporter_issue_info{repo=~\"$repo\",state=\"open\",kind=\"\"})",
+              "expr": "sum by (T) (github_exporter_issue_info{repo=~\"$repo\",state=\"open\",T=\"\"})",
               "interval": "",
-              "legendFormat": "(no kind)",
+              "legendFormat": "(no T)",
               "refId": "A"
             }
           ],
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
-          "title": "Open Issues by Kind",
+          "title": "Open Issues by Type (T)",
           "transformations": [],
           "transparent": true,
           "type": "grafana-piechart-panel",

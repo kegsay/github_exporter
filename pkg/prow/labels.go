@@ -9,7 +9,7 @@ import (
 )
 
 func PullRequestLabelNames() []string {
-	return []string{"approved", "lgtm", "pending", "size", "kind", "priority", "team"}
+	return []string{"approved", "lgtm", "pending", "size", "T", "priority", "team"}
 }
 
 func PullRequestLabels(pr *github.PullRequest) []string {
@@ -18,19 +18,19 @@ func PullRequestLabels(pr *github.PullRequest) []string {
 		fmt.Sprintf("%v", pr.HasLabel("approved")),
 		fmt.Sprintf("%v", prefixedLabel("do-not-merge", pr.Labels) != ""),
 		prefixedLabel("size", pr.Labels),
-		prefixedLabel("kind", pr.Labels),
+		prefixedLabel("T", pr.Labels),
 		prefixedLabel("priority", pr.Labels),
 		prefixedLabel("team", pr.Labels),
 	}
 }
 
 func IssueLabelNames() []string {
-	return []string{"kind", "priority", "team"}
+	return []string{"T", "priority", "team"}
 }
 
 func IssueLabels(issue *github.Issue) []string {
 	return []string{
-		prefixedLabel("kind", issue.Labels),
+		prefixedLabel("T", issue.Labels),
 		prefixedLabel("priority", issue.Labels),
 		prefixedLabel("team", issue.Labels),
 	}
@@ -38,7 +38,7 @@ func IssueLabels(issue *github.Issue) []string {
 
 func prefixedLabel(prefix string, labels []string) string {
 	prefix = strings.ToLower(strings.TrimSuffix(prefix, "/"))
-	regex := regexp.MustCompile(fmt.Sprintf(`^%s/(.+)$`, prefix))
+	regex := regexp.MustCompile(fmt.Sprintf(`^%s-(.+)$`, prefix))
 
 	for _, label := range labels {
 		label := strings.ToLower(label)

@@ -1,0 +1,40 @@
+# name: element-stats
+version: "3"
+secrets:
+  GITHUB_TOKEN:
+    file: ./gh-token
+services:
+  grafana:
+    image: grafana/grafana-oss
+    environment:
+      - "GF_INSTALL_PLUGINS=grafana-piechart-panel"
+      - "GF_AUTH_ANONYMOUS_ENABLED=true"
+      - "GF_AUTH_ORG_ROLE=Editor"
+      - "GF_AUTH_DISABLE_LOGIN_FORM=true"
+      - "GF_AUTH_ANONYMOUS_ORG_ROLE=Admin"
+    volumes:
+      - ./datasources:/etc/grafana/provisioning/datasources
+      - ./dashboards:/etc/grafana/provisioning/dashboards
+    ports:
+      - 3000:3000
+    networks:
+      - yesplease
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+    networks:
+      - yesplease
+  ghexporter:
+    image: github-exporter
+    secrets:
+      - GITHUB_TOKEN
+    command: "-repo matrix-org/dendrite"
+    ports:
+      - 9612:9612
+    networks:
+      - yesplease
+networks:
+  yesplease:

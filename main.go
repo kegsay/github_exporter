@@ -4,6 +4,7 @@ import (
 	"context"
 	"flag"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"os"
 	"time"
@@ -106,12 +107,17 @@ func main() {
 
 	token := os.Getenv("GITHUB_TOKEN")
 	if len(token) == 0 {
-		log.Fatal("No GITHUB_TOKEN environment variable defined.")
+		// try reading secret file
+		b, err := ioutil.ReadFile("/run/secrets/GITHUB_TOKEN")
+		if err != nil {
+			log.Fatal("No GITHUB_TOKEN environment variable defined, nor GITHUB_TOKEN docker secret.")
+		}
+		token = string(b)
 	}
 
 	// setup API client
 	ctx := context.Background()
-
+	opt.realnames = true
 	client, err := client.NewClient(ctx, log.WithField("component", "client"), token, opt.realnames)
 	if err != nil {
 		log.Fatalf("Failed to create API client: %v", err)
