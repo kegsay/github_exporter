@@ -1399,7 +1399,7 @@
           "timeFrom": null,
           "timeRegions": [],
           "timeShift": null,
-          "title": "Open Issues by Priority",
+          "title": "Open Issues by Priority (P)",
           "transformations": [],
           "transparent": true,
           "type": "grafana-piechart-panel",
