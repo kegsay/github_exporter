@@ -24,13 +24,12 @@ func PullRequestLabels(pr *github.PullRequest) []string {
 }
 
 func IssueLabelNames() []string {
-	return []string{"T", "priority"}
+	return []string{"T"}
 }
 
 func IssueLabels(issue *github.Issue) []string {
 	return []string{
 		prefixedLabel("T", issue.Labels),
-		prefixedLabel("priority", issue.Labels),
 	}
 }
 

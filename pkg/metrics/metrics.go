@@ -276,7 +276,7 @@ func init() {
 		nil,
 	)
 
-	issueLabels := []string{"repo", "number", "author", "state", "team"}
+	issueLabels := []string{"repo", "number", "author", "state", "team", "priority"}
 	issueLabels = append(issueLabels, prow.IssueLabelNames()...)
 
 	issueInfo = prometheus.NewDesc(

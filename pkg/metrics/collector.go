@@ -185,6 +185,7 @@ func (mc *Collector) collectRepoIssues(ch chan<- prometheus.Metric, repo *github
 			issue.Author,
 			strings.ToLower(string(issue.State)),
 			team,
+			Priority(issue.Labels),
 		}
 		infoLabels = append(infoLabels, prow.IssueLabels(&issue)...)
 
@@ -271,4 +272,53 @@ func (m stateLabelMap) ToMetrics(ch chan<- prometheus.Metric, repo *github.Repos
 			ch <- prometheus.MustNewConstMetric(metric, prometheus.GaugeValue, float64(count), repoName, label, strings.ToLower(state))
 		}
 	}
+}
+
+var wordToScore = map[string]int{
+	"critical":   4,
+	"major":      3,
+	"minor":      2,
+	"tolerable":  1,
+	"frequent":   3,
+	"occasional": 2,
+	"uncommon":   1,
+}
+
+func Priority(labels []string) string {
+	s := 0
+	o := 0
+	for _, l := range labels {
+		l = strings.ToLower(l)
+		if strings.HasPrefix(l, "s-") {
+			s = wordToScore[strings.TrimPrefix(l, "s-")]
+		} else if strings.HasPrefix(l, "o-") {
+			o = wordToScore[strings.TrimPrefix(l, "o-")]
+		} else {
+			switch l {
+			case "p1":
+				return "P1"
+			case "p2":
+				return "P2"
+			case "p3":
+				return "P3"
+			case "p4":
+				return "P4"
+			}
+		}
+	}
+	// edge case :/
+	if s == 4 && o == 1 {
+		return "P2"
+	}
+	val := s * o
+	if val >= 8 {
+		return "P1"
+	} else if val >= 6 {
+		return "P2"
+	} else if val >= 3 {
+		return "P3"
+	} else if val > 0 {
+		return "P4"
+	}
+	return "P?"
 }
