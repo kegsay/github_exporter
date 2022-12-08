@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"net/http"
 
 	"github.com/shurcooL/githubv4"
 	"github.com/sirupsen/logrus"
@@ -20,6 +21,7 @@ var stopFetching = errors.New("stop fetching data pls")
 type Client struct {
 	ctx             context.Context
 	client          *githubv4.Client
+	httpClient      *http.Client
 	log             logrus.FieldLogger
 	realnames       bool
 	requests        map[string]int
@@ -43,6 +45,7 @@ func NewClient(ctx context.Context, log logrus.FieldLogger, token string, realna
 	return &Client{
 		ctx:             ctx,
 		client:          client,
+		httpClient:      httpClient,
 		log:             log,
 		realnames:       realnames,
 		requests:        map[string]int{},

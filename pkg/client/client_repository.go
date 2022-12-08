@@ -1,6 +1,10 @@
 package client
 
 import (
+	"encoding/json"
+	"fmt"
+	"net/http"
+
 	"github.com/shurcooL/githubv4"
 	"github.com/sirupsen/logrus"
 )
@@ -124,4 +128,41 @@ func (c *Client) RepositoriesNames(login string) ([]string, error) {
 	}
 
 	return repos, nil
+}
+
+type member struct {
+	Login string `json:"login"`
+}
+
+const perPage = 100
+
+func (c *Client) OrgMembers(org string) ([]string, error) {
+	return c.orgMembersPage(org, 1)
+}
+
+func (c *Client) orgMembersPage(org string, page int) ([]string, error) {
+	req, err := http.NewRequest("GET", fmt.Sprintf("https://api.github.com/orgs/%s/members?per_page=%d&page=%d", org, perPage, page), nil)
+	if err != nil {
+		return nil, err
+	}
+	res, err := c.httpClient.Do(req)
+	if err != nil {
+		return nil, err
+	}
+	if res.StatusCode >= 400 {
+		return nil, fmt.Errorf("OrgMembers returned HTTP %d", res.StatusCode)
+	}
+	var resJSON []member
+	if err := json.NewDecoder(res.Body).Decode(&resJSON); err != nil {
+		return nil, err
+	}
+	members := make([]string, len(resJSON))
+	for i := range members {
+		members[i] = resJSON[i].Login
+	}
+	if len(members) == perPage {
+		otherMembers, _ := c.orgMembersPage(org, page+1)
+		members = append(members, otherMembers...)
+	}
+	return members, nil
 }

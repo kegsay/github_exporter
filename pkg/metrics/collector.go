@@ -134,12 +134,18 @@ func (mc *Collector) collectRepoPullRequests(ch chan<- prometheus.Metric, repo *
 		for _, label := range pr.Labels {
 			totals[string(pr.State)][label]++
 		}
+		authorInTeam := repo.Members[pr.Author]
+		team := "contributor"
+		if authorInTeam {
+			team = "core"
+		}
 
 		infoLabels := []string{
 			repoName,
 			num,
 			pr.Author,
 			strings.ToLower(string(pr.State)),
+			team,
 		}
 		infoLabels = append(infoLabels, prow.PullRequestLabels(&pr)...)
 
@@ -167,12 +173,18 @@ func (mc *Collector) collectRepoIssues(ch chan<- prometheus.Metric, repo *github
 		for _, label := range issue.Labels {
 			totals[string(issue.State)][label]++
 		}
+		authorInTeam := repo.Members[issue.Author]
+		team := "contributor"
+		if authorInTeam {
+			team = "core"
+		}
 
 		infoLabels := []string{
 			repoName,
 			num,
 			issue.Author,
 			strings.ToLower(string(issue.State)),
+			team,
 		}
 		infoLabels = append(infoLabels, prow.IssueLabels(&issue)...)
 
@@ -180,6 +192,10 @@ func (mc *Collector) collectRepoIssues(ch chan<- prometheus.Metric, repo *github
 		ch <- constMetric(issueCreatedAt, prometheus.GaugeValue, float64(issue.CreatedAt.Unix()), repoName, num)
 		ch <- constMetric(issueUpdatedAt, prometheus.GaugeValue, float64(issue.UpdatedAt.Unix()), repoName, num)
 		ch <- constMetric(issueFetchedAt, prometheus.GaugeValue, float64(issue.FetchedAt.Unix()), repoName, num)
+		/* ch <- prometheus.NewMetricWithTimestamp(
+			issue.CreatedAt,
+			prometheus.MustNewConstMetric(testIssueCreated, prometheus.CounterValue, 1, repoName),
+		) */
 	}
 
 	totals.ToMetrics(ch, repo, issueLabelCount)

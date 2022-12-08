@@ -9,7 +9,7 @@ import (
 )
 
 func PullRequestLabelNames() []string {
-	return []string{"approved", "lgtm", "pending", "size", "T", "priority", "team"}
+	return []string{"approved", "lgtm", "pending", "size", "T", "priority"}
 }
 
 func PullRequestLabels(pr *github.PullRequest) []string {
@@ -20,19 +20,17 @@ func PullRequestLabels(pr *github.PullRequest) []string {
 		prefixedLabel("size", pr.Labels),
 		prefixedLabel("T", pr.Labels),
 		prefixedLabel("priority", pr.Labels),
-		prefixedLabel("team", pr.Labels),
 	}
 }
 
 func IssueLabelNames() []string {
-	return []string{"T", "priority", "team"}
+	return []string{"T", "priority"}
 }
 
 func IssueLabels(issue *github.Issue) []string {
 	return []string{
 		prefixedLabel("T", issue.Labels),
 		prefixedLabel("priority", issue.Labels),
-		prefixedLabel("team", issue.Labels),
 	}
 }
 

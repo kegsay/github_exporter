@@ -58,6 +58,7 @@ func main() {
 		milestoneResyncInterval:  12 * time.Hour,
 		milestoneDepth:           -1,
 		listenAddr:               ":9612",
+		realnames:                true,
 	}
 
 	flag.Var(&opt.repositories, "repo", "repository (owner/name format) to include, can be given multiple times")
@@ -117,7 +118,6 @@ func main() {
 
 	// setup API client
 	ctx := context.Background()
-	opt.realnames = true
 	client, err := client.NewClient(ctx, log.WithField("component", "client"), token, opt.realnames)
 	if err != nil {
 		log.Fatalf("Failed to create API client: %v", err)
@@ -156,6 +156,17 @@ func setup(ctx AppContext, log logrus.FieldLogger) {
 	// create a PR database for each repo
 	for _, repo := range ctx.options.repositories {
 		repositories[repo.String()] = github.NewRepository(repo.owner, repo.name)
+	}
+	for rs, r := range repositories {
+		members, err := ctx.client.OrgMembers(r.Owner)
+		if err != nil {
+			log.Infof("failed to get org members for %s: %s", r.Owner, err)
+			continue
+		}
+		for _, userID := range members {
+			r.Members[userID] = true
+		}
+		repositories[rs] = r
 	}
 
 	// setup the single-threaded fetcher

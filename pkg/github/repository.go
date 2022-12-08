@@ -29,6 +29,7 @@ type Repository struct {
 	IsTemplate     bool
 	Languages      map[string]int
 	FetchedAt      *time.Time
+	Members        map[string]bool
 
 	lock sync.RWMutex
 }
@@ -43,6 +44,7 @@ func NewRepository(owner string, name string) *Repository {
 		Labels:       []string{},
 		Languages:    map[string]int{},
 		lock:         sync.RWMutex{},
+		Members:      make(map[string]bool),
 	}
 }
 
