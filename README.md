@@ -17,6 +17,7 @@ Eligible repositories must:
 You need to:
 - create a [personal access token](https://github.com/settings/tokens) (Classic, not fine-grained) for Github with `repo:status`, `public_repo`, `user:email` scopes. You may need more if you want to run this in private repositories or see members who have not publicly said they are inside a given organisation. Copy the token into a file called `gh-token` at the top-level of this repository.
 - state which repositories you are interested in. Currently this is done by modifying the docker-compose.yml file and defaults to `matrix-org/dendrite`.
+- Build the exporter docker image: `docker build -t github-exporter .`
 
 ## Running
 
