@@ -2,6 +2,9 @@
 
 Want to get pretty dashboards like this? Read on!
 
+<img width="837" alt="Screenshot 2022-12-08 at 19 34 52" src="https://user-images.githubusercontent.com/7190048/206551922-68cbbc5b-4297-4405-9c44-5a8cdca41255.png">
+
+
 
 ## Requirements
 
@@ -12,7 +15,7 @@ Eligible repositories must:
 - use the [labelling scheme](https://github.com/vector-im/element-meta/wiki/Triage-process).
 
 You need to:
-- create a [personal access token](https://github.com/settings/tokens) (Classic, not fine-grained) for Github with `repo:status`, `public_repo`, `user:email` scopes. You may need more if you want to run this in private repositories. Copy the token into a file called `gh-token` at the top-level of this repository.
+- create a [personal access token](https://github.com/settings/tokens) (Classic, not fine-grained) for Github with `repo:status`, `public_repo`, `user:email` scopes. You may need more if you want to run this in private repositories or see members who have not publicly said they are inside a given organisation. Copy the token into a file called `gh-token` at the top-level of this repository.
 - state which repositories you are interested in.
 
 ## Running
