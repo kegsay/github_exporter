@@ -25,7 +25,10 @@ You need to:
 docker-compose up
 ```
 
-Then visit http://localhost:3000/d/UGK4RFiGk/github?orgId=1&refresh=1m&from=now-5m&to=now - you'll need to wait several minutes for data to show up. You can check some graphs almost immediately though.
+Then visit http://localhost:3000/d/UGK4RFiGk/github?orgId=1&refresh=1m&from=now-5m&to=now - you'll need to wait several minutes for data to show up. You can check some graphs almost immediately though. If you want to delete all stored data, you'll need to `docker-compose down` after CTRL+Cing.
+
+
+NOTE: Large projects will encounter HTTP 502 timeouts, but it will eventually acquire all the data, though you may need to wait 20-30 mins (!!!).
 
 ## How do I get pull request latency for a certain time period?
 
