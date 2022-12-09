@@ -4,6 +4,7 @@ Want to get pretty dashboards like this? Read on!
 
 <img width="837" alt="Screenshot 2022-12-08 at 19 34 52" src="https://user-images.githubusercontent.com/7190048/206551922-68cbbc5b-4297-4405-9c44-5a8cdca41255.png">
 
+<img width="1690" alt="Screenshot 2022-12-09 at 17 13 00" src="https://user-images.githubusercontent.com/7190048/206756683-462bb5b4-6b6d-482d-bff2-c4a383680c37.png">
 
 
 ## Requirements
@@ -30,6 +31,9 @@ Then visit http://localhost:3000/d/UGK4RFiGk/github?orgId=1&refresh=1m&from=now-
 
 - Find out which PR number range you need e.g #28xx-#29xx
 - Edit the PR latency pie chart to filter to these PRs:
+
+<img width="1383" alt="Screenshot 2022-12-09 at 16 57 16" src="https://user-images.githubusercontent.com/7190048/206756751-23658876-aedd-41a3-9cf0-11c0860fb2fb.png">
+
 
 ## How does this work?
 
