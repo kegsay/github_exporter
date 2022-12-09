@@ -109,7 +109,7 @@ var (
 	pullRequestCreatedAt = prometheus.NewDesc(
 		"github_exporter_pr_created_at",
 		"UNIX timestamp of a Pull Request's creation time",
-		[]string{"repo", "number"},
+		[]string{"repo", "number", "state", "review"},
 		nil,
 	)
 
@@ -259,7 +259,7 @@ var (
 )
 
 func init() {
-	prLabels := []string{"repo", "number", "author", "state", "review", "team", "created"}
+	prLabels := []string{"repo", "number", "author", "state", "review", "team", "latency"}
 	prLabels = append(prLabels, prow.PullRequestLabelNames()...)
 
 	pullRequestInfo = prometheus.NewDesc(

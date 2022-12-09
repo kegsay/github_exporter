@@ -15,6 +15,8 @@ type graphqlPullRequest struct {
 	State          githubv4.PullRequestState
 	ReviewDecision githubv4.PullRequestReviewDecision
 	CreatedAt      time.Time
+	ClosedAt       time.Time
+	MergedAt       time.Time
 	UpdatedAt      time.Time
 
 	Author struct {
@@ -52,6 +54,8 @@ func (c *Client) convertPullRequest(api graphqlPullRequest, fetchedAt time.Time)
 		ReviewDecision: api.ReviewDecision,
 		CreatedAt:      api.CreatedAt,
 		UpdatedAt:      api.UpdatedAt,
+		ClosedAt:       api.ClosedAt,
+		MergedAt:       api.MergedAt,
 		FetchedAt:      fetchedAt,
 		Labels:         []string{},
 		Contexts:       []github.BuildContext{},

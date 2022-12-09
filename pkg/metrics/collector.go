@@ -3,6 +3,7 @@ package metrics
 import (
 	"strconv"
 	"strings"
+	"time"
 
 	"go.xrstf.de/github_exporter/pkg/prow"
 
@@ -147,13 +148,13 @@ func (mc *Collector) collectRepoPullRequests(ch chan<- prometheus.Metric, repo *
 			strings.ToLower(string(pr.State)),
 			strings.ToLower(string(pr.ReviewDecision)),
 			team,
-			strconv.FormatInt(pr.CreatedAt.Unix(), 10),
+			LatencyBucket(pr),
 		}
 		infoLabels = append(infoLabels, prow.PullRequestLabels(&pr)...)
 
 		ch <- constMetric(pullRequestInfo, prometheus.GaugeValue, 1, infoLabels...)
-		ch <- constMetric(pullRequestCreatedAt, prometheus.GaugeValue, float64(pr.CreatedAt.Unix()), repoName, num)
-		ch <- constMetric(pullRequestUpdatedAt, prometheus.GaugeValue, float64(pr.UpdatedAt.Unix()), repoName, num)
+		//ch <- constMetric(pullRequestCreatedAt, prometheus.GaugeValue, float64(pr.CreatedAt.Unix()), repoName, num, string(pr.State), string(pr.ReviewDecision))
+		//ch <- constMetric(pullRequestUpdatedAt, prometheus.GaugeValue, float64(pr.UpdatedAt.Unix()), repoName, num)
 		ch <- constMetric(pullRequestFetchedAt, prometheus.GaugeValue, float64(pr.FetchedAt.Unix()), repoName, num)
 	}
 
@@ -270,6 +271,36 @@ func (m stateLabelMap) ToMetrics(ch chan<- prometheus.Metric, repo *github.Repos
 			ch <- prometheus.MustNewConstMetric(metric, prometheus.GaugeValue, float64(count), repoName, label, strings.ToLower(state))
 		}
 	}
+}
+
+func LatencyBucket(pr github.PullRequest) string {
+	startTime := pr.CreatedAt
+	endTime := time.Now()
+	if pr.State != githubv4.PullRequestStateOpen {
+		if !pr.ClosedAt.IsZero() {
+			endTime = pr.ClosedAt
+		} else if !pr.MergedAt.IsZero() {
+			endTime = pr.MergedAt
+		}
+	}
+	if startTime.IsZero() || endTime.IsZero() || endTime.Before(startTime) {
+		return "error"
+	}
+	dur := endTime.Sub(startTime)
+	if dur < time.Hour {
+		return "<1h"
+	} else if dur < (12 * time.Hour) {
+		return "1-12h"
+	} else if dur < (24 * time.Hour) {
+		return "12h-1d"
+	} else if dur < (3 * 24 * time.Hour) {
+		return "1-3d"
+	} else if dur < (5 * 24 * time.Hour) {
+		return "3-5d"
+	} else if dur < (7 * 24 * time.Hour) {
+		return "5-7d"
+	}
+	return ">7d"
 }
 
 var wordToScore = map[string]int{

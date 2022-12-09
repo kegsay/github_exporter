@@ -17,6 +17,8 @@ type PullRequest struct {
 	Author         string
 	State          githubv4.PullRequestState
 	ReviewDecision githubv4.PullRequestReviewDecision
+	ClosedAt       time.Time
+	MergedAt       time.Time
 	CreatedAt      time.Time
 	UpdatedAt      time.Time
 	FetchedAt      time.Time
