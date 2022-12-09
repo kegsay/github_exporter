@@ -13,14 +13,15 @@ type BuildContext struct {
 }
 
 type PullRequest struct {
-	Number    int
-	Author    string
-	State     githubv4.PullRequestState
-	CreatedAt time.Time
-	UpdatedAt time.Time
-	FetchedAt time.Time
-	Labels    []string
-	Contexts  []BuildContext
+	Number         int
+	Author         string
+	State          githubv4.PullRequestState
+	ReviewDecision githubv4.PullRequestReviewDecision
+	CreatedAt      time.Time
+	UpdatedAt      time.Time
+	FetchedAt      time.Time
+	Labels         []string
+	Contexts       []BuildContext
 }
 
 func (p *PullRequest) HasLabel(label string) bool {

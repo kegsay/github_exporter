@@ -9,14 +9,11 @@ import (
 )
 
 func PullRequestLabelNames() []string {
-	return []string{"approved", "lgtm", "pending", "size", "T", "priority"}
+	return []string{"size", "T", "priority"}
 }
 
 func PullRequestLabels(pr *github.PullRequest) []string {
 	return []string{
-		fmt.Sprintf("%v", pr.HasLabel("lgtm")),
-		fmt.Sprintf("%v", pr.HasLabel("approved")),
-		fmt.Sprintf("%v", prefixedLabel("do-not-merge", pr.Labels) != ""),
 		prefixedLabel("size", pr.Labels),
 		prefixedLabel("T", pr.Labels),
 		prefixedLabel("priority", pr.Labels),

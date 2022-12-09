@@ -256,17 +256,10 @@ var (
 		[]string{"repo"},
 		nil,
 	)
-
-	testIssueCreated = prometheus.NewDesc(
-		"github_exporter_test_issue",
-		"foo",
-		[]string{"repo"},
-		nil,
-	)
 )
 
 func init() {
-	prLabels := []string{"repo", "number", "author", "state", "team"}
+	prLabels := []string{"repo", "number", "author", "state", "review", "team", "created"}
 	prLabels = append(prLabels, prow.PullRequestLabelNames()...)
 
 	pullRequestInfo = prometheus.NewDesc(

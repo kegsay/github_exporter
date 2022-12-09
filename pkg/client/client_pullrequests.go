@@ -11,10 +11,11 @@ import (
 )
 
 type graphqlPullRequest struct {
-	Number    int
-	State     githubv4.PullRequestState
-	CreatedAt time.Time
-	UpdatedAt time.Time
+	Number         int
+	State          githubv4.PullRequestState
+	ReviewDecision githubv4.PullRequestReviewDecision
+	CreatedAt      time.Time
+	UpdatedAt      time.Time
 
 	Author struct {
 		Login string
@@ -45,14 +46,15 @@ type graphqlPullRequest struct {
 
 func (c *Client) convertPullRequest(api graphqlPullRequest, fetchedAt time.Time) github.PullRequest {
 	pr := github.PullRequest{
-		Number:    api.Number,
-		Author:    api.Author.User.ID,
-		State:     api.State,
-		CreatedAt: api.CreatedAt,
-		UpdatedAt: api.UpdatedAt,
-		FetchedAt: fetchedAt,
-		Labels:    []string{},
-		Contexts:  []github.BuildContext{},
+		Number:         api.Number,
+		Author:         api.Author.User.ID,
+		State:          api.State,
+		ReviewDecision: api.ReviewDecision,
+		CreatedAt:      api.CreatedAt,
+		UpdatedAt:      api.UpdatedAt,
+		FetchedAt:      fetchedAt,
+		Labels:         []string{},
+		Contexts:       []github.BuildContext{},
 	}
 
 	if c.realnames {

@@ -145,7 +145,9 @@ func (mc *Collector) collectRepoPullRequests(ch chan<- prometheus.Metric, repo *
 			num,
 			pr.Author,
 			strings.ToLower(string(pr.State)),
+			strings.ToLower(string(pr.ReviewDecision)),
 			team,
+			strconv.FormatInt(pr.CreatedAt.Unix(), 10),
 		}
 		infoLabels = append(infoLabels, prow.PullRequestLabels(&pr)...)
 
@@ -193,10 +195,6 @@ func (mc *Collector) collectRepoIssues(ch chan<- prometheus.Metric, repo *github
 		ch <- constMetric(issueCreatedAt, prometheus.GaugeValue, float64(issue.CreatedAt.Unix()), repoName, num)
 		ch <- constMetric(issueUpdatedAt, prometheus.GaugeValue, float64(issue.UpdatedAt.Unix()), repoName, num)
 		ch <- constMetric(issueFetchedAt, prometheus.GaugeValue, float64(issue.FetchedAt.Unix()), repoName, num)
-		/* ch <- prometheus.NewMetricWithTimestamp(
-			issue.CreatedAt,
-			prometheus.MustNewConstMetric(testIssueCreated, prometheus.CounterValue, 1, repoName),
-		) */
 	}
 
 	totals.ToMetrics(ch, repo, issueLabelCount)

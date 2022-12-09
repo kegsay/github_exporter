@@ -7,7 +7,7 @@ services:
   grafana:
     image: grafana/grafana-oss
     environment:
-      - "GF_INSTALL_PLUGINS=grafana-piechart-panel"
+      - "GF_INSTALL_PLUGINS=grafana-piechart-panel,grafana-github-datasource"
       - "GF_AUTH_ANONYMOUS_ENABLED=true"
       - "GF_AUTH_ORG_ROLE=Editor"
       - "GF_AUTH_DISABLE_LOGIN_FORM=true"
