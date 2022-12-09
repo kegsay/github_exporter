@@ -5,7 +5,7 @@ secrets:
     file: ./gh-token
 services:
   grafana:
-    image: grafana/grafana-oss
+    image: grafana/grafana-oss:9.3.1
     environment:
       - "GF_INSTALL_PLUGINS=grafana-piechart-panel,grafana-github-datasource"
       - "GF_AUTH_ANONYMOUS_ENABLED=true"
@@ -20,7 +20,7 @@ services:
     networks:
       - yesplease
   prometheus:
-    image: prom/prometheus
+    image: prom/prometheus:v2.40.5
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     ports:
@@ -28,7 +28,7 @@ services:
     networks:
       - yesplease
   ghexporter:
-    image: github-exporter
+    image: kegsay/github-exporter:v0.1
     secrets:
       - GITHUB_TOKEN
     command: "-repo matrix-org/dendrite -repo matrix-org/gomatrixserverlib"
