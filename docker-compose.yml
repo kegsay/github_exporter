@@ -31,7 +31,7 @@ services:
     image: github-exporter
     secrets:
       - GITHUB_TOKEN
-    command: "-repo matrix-org/dendrite"
+    command: "-repo matrix-org/dendrite -repo matrix-org/gomatrixserverlib"
     ports:
       - 9612:9612
     networks:

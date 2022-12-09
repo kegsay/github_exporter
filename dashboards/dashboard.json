@@ -1,913 +1,803 @@
 {
   "annotations": {
-    "list": []
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
   },
   "editable": true,
-  "gnetId": null,
+  "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "hideControls": false,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
         "y": 0
       },
-      "id": 32,
+      "id": 7,
       "panels": [],
-      "title": "General Information",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Pull Requests",
       "type": "row"
     },
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
-      "editable": true,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 50,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "decimals": 0,
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
         },
         "overrides": []
       },
-      "fill": 1,
-      "fillGradient": 5,
       "gridPos": {
         "h": 10,
-        "w": 6,
+        "w": 12,
         "x": 0,
         "y": 1
       },
-      "hiddenSeries": false,
-      "id": 33,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
+      "id": 4,
       "options": {
-        "dataLinks": []
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
       },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
+      "pluginVersion": "9.3.1",
       "targets": [
         {
-          "expr": "sum by (repo) (github_exporter_repo_stargazers{repo=~\"$repo\"})",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "expr": "sum by (repo) (github_exporter_pr_info{repo=~\"$repo\",state=\"open\"})",
           "interval": "",
           "legendFormat": "{{ repo }}",
           "refId": "A"
         }
       ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Stargazers",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
+      "title": "Open Pull Requests",
       "transparent": true,
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "decimals": null,
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
+      "type": "timeseries"
     },
     {
       "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
+      "breakPoint": "50%",
+      "combine": {
+        "label": "Others",
+        "threshold": "0.01"
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "editable": true,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 5,
-      "gridPos": {
-        "h": 10,
-        "w": 6,
-        "x": 6,
-        "y": 1
-      },
-      "hiddenSeries": false,
-      "id": 35,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "sum by (repo) (github_exporter_repo_forks{repo=~\"$repo\"})",
-          "interval": "",
-          "legendFormat": "{{ repo }}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Forks",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
-      "transparent": true,
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "decimals": null,
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
-      "description": "",
-      "editable": true,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 5,
+      "fontSize": "100%",
+      "format": "short",
       "gridPos": {
         "h": 10,
         "w": 6,
         "x": 12,
         "y": 1
       },
-      "hiddenSeries": false,
-      "id": 34,
+      "id": 16,
       "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
+        "percentage": false,
         "show": true,
-        "total": false,
-        "values": false
+        "sort": "current",
+        "sortDesc": true,
+        "values": true
       },
-      "lines": true,
-      "linewidth": 1,
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 1,
       "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
+      "pieType": "donut",
+      "pluginVersion": "7.0.3",
+      "strokeWidth": "3",
       "targets": [
         {
-          "expr": "sum by (repo) (github_exporter_repo_watchers{repo=~\"$repo\"})",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "expr": "sum by (team) (github_exporter_pr_info{repo=~\"$repo\",state=\"open\",team!=\"\"})",
           "interval": "",
-          "legendFormat": "{{ repo }}",
+          "legendFormat": "{{ team }}",
+          "refId": "G"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "expr": "sum by (team) (github_exporter_pr_info{repo=~\"$repo\",state=\"open\",team=\"\"})",
+          "interval": "",
+          "legendFormat": "(no team)",
           "refId": "A"
         }
       ],
-      "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
-      "title": "Watchers",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
+      "title": "Open Pull Requests By Team",
+      "transformations": [],
       "transparent": true,
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "decimals": null,
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
     },
     {
       "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
+      "breakPoint": "50%",
+      "combine": {
+        "label": "Others",
+        "threshold": "0.01"
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "editable": true,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {}
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 5,
+      "fontSize": "100%",
+      "format": "short",
       "gridPos": {
         "h": 10,
         "w": 6,
         "x": 18,
         "y": 1
       },
-      "hiddenSeries": false,
-      "id": 36,
+      "id": 14,
       "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
+        "percentage": false,
         "show": true,
-        "total": false,
-        "values": false
+        "sort": "current",
+        "sortDesc": true,
+        "values": true
       },
-      "lines": true,
-      "linewidth": 1,
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 1,
       "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
+      "pieType": "donut",
+      "pluginVersion": "7.0.3",
+      "strokeWidth": "3",
       "targets": [
         {
-          "expr": "sum by (repo) (github_exporter_repo_disk_usage_bytes{repo=~\"$repo\"})",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "expr": "sum by (author) (github_exporter_pr_info{repo=~\"$repo\",state=\"open\"})",
           "interval": "",
-          "legendFormat": "{{ repo }}",
-          "refId": "A"
+          "legendFormat": "{{ author }}",
+          "refId": "G"
         }
       ],
-      "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
-      "title": "Disk Usage",
-      "tooltip": {
-        "shared": true,
-        "sort": 2,
-        "value_type": "individual"
-      },
+      "title": "Open Pull Requests By Author",
+      "transformations": [],
       "transparent": true,
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "decimals": null,
-          "format": "bytes",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
     },
     {
       "collapsed": false,
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
         "y": 11
       },
-      "id": 27,
+      "id": 18,
       "panels": [],
-      "title": "Milestones",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Issues",
       "type": "row"
     },
     {
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
-      "editable": true,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 50,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
           "decimals": 0,
+          "links": [],
           "mappings": [],
-          "max": 1,
-          "min": 0,
           "thresholds": {
-            "mode": "percentage",
+            "mode": "absolute",
             "steps": [
               {
-                "color": "red",
+                "color": "green",
                 "value": null
               },
               {
-                "color": "#EAB839",
-                "value": 33
-              },
-              {
-                "color": "green",
-                "value": 66
+                "color": "red",
+                "value": 80
               }
             ]
           },
-          "unit": "percentunit"
+          "unit": "short"
         },
         "overrides": []
       },
       "gridPos": {
-        "h": 12,
+        "h": 10,
         "w": 12,
         "x": 0,
         "y": 12
       },
-      "id": 25,
+      "id": 13,
       "options": {
-        "displayMode": "lcd",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
         },
-        "showUnfilled": true
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
       },
-      "pluginVersion": "7.0.3",
+      "pluginVersion": "9.3.1",
       "targets": [
         {
-          "expr": "github_exporter_milestone_info * on (repo, number) group_right(title) (:github_exporter_repo_open_milestone_completion:{repo=~\"$repo\"})",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "sum by (repo) (github_exporter_issue_info{repo=~\"$repo\",state=\"open\",priority=\"P?\"})",
           "interval": "",
-          "legendFormat": "{{ repo }} / {{ title }}",
+          "legendFormat": "{{ repo }} P?",
+          "range": true,
           "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "sum by (repo) (github_exporter_issue_info{repo=~\"$repo\",state=\"open\",priority=\"P1\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{ repo }} P1",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "editorMode": "code",
+          "expr": "sum by (repo) (github_exporter_issue_info{repo=~\"$repo\",state=\"open\",priority=\"P2\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{ repo }} P2",
+          "range": true,
+          "refId": "C"
         }
       ],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Open Milestone Completion",
+      "title": "Open P1, P2 Issues",
       "transparent": true,
-      "type": "bargauge"
+      "type": "timeseries"
     },
     {
       "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": null,
+      "breakPoint": "50%",
+      "combine": {
+        "label": "Others",
+        "threshold": "0.01"
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "description": "",
       "editable": true,
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": null
-          },
-          "decimals": 0,
-          "mappings": [],
-          "max": 1,
-          "min": 0,
-          "thresholds": {
-            "mode": "percentage",
-            "steps": [
-              {
-                "color": "red",
-                "value": null
-              },
-              {
-                "color": "#EAB839",
-                "value": 33
-              },
-              {
-                "color": "green",
-                "value": 66
-              }
-            ]
-          },
-          "unit": "percentunit"
-        },
-        "overrides": []
-      },
-      "fill": 0,
-      "fillGradient": 5,
+      "fontSize": "100%",
+      "format": "short",
       "gridPos": {
-        "h": 12,
-        "w": 12,
+        "h": 10,
+        "w": 6,
         "x": 12,
         "y": 12
       },
-      "hiddenSeries": false,
-      "id": 28,
+      "id": 23,
       "legend": {
-        "alignAsTable": true,
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "rightSide": true,
+        "percentage": false,
         "show": true,
-        "total": false,
-        "values": false
+        "sort": "current",
+        "sortDesc": true,
+        "values": true
       },
-      "lines": true,
-      "linewidth": 1,
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 1,
       "nullPointMode": "connected",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
+      "pieType": "donut",
       "pluginVersion": "7.0.3",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
+      "strokeWidth": "3",
       "targets": [
         {
-          "expr": "github_exporter_milestone_info * on (repo, number) group_right(title) (:github_exporter_repo_open_milestone_completion:{repo=~\"$repo\"})",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "expr": "sum by (T) (github_exporter_issue_info{repo=~\"$repo\",state=\"open\",T!=\"\"})",
           "interval": "",
-          "legendFormat": "{{ repo }} / {{ title }}",
+          "legendFormat": "{{ T }}",
+          "refId": "G"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "expr": "sum by (T) (github_exporter_issue_info{repo=~\"$repo\",state=\"open\",T=\"\"})",
+          "interval": "",
+          "legendFormat": "(no T)",
           "refId": "A"
         }
       ],
-      "thresholds": [],
-      "timeFrom": null,
       "timeRegions": [],
-      "timeShift": null,
-      "title": "Open Milestone Completion",
-      "tooltip": {
-        "shared": true,
-        "sort": 1,
-        "value_type": "individual"
-      },
+      "title": "Open Issues by Type (T)",
+      "transformations": [],
       "transparent": true,
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "breakPoint": "50%",
+      "combine": {
+        "label": "Others",
+        "threshold": "0.01"
       },
-      "yaxes": [
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "",
+      "editable": true,
+      "fontSize": "100%",
+      "format": "short",
+      "gridPos": {
+        "h": 10,
+        "w": 6,
+        "x": 18,
+        "y": 12
+      },
+      "id": 20,
+      "legend": {
+        "percentage": false,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 1,
+      "nullPointMode": "connected",
+      "pieType": "donut",
+      "pluginVersion": "7.0.3",
+      "strokeWidth": "3",
+      "targets": [
         {
-          "decimals": 0,
-          "format": "percentunit",
-          "label": null,
-          "logBase": 1,
-          "max": "1",
-          "min": "0",
-          "show": true
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "expr": "sum by (priority) (github_exporter_issue_info{repo=~\"$repo\",state=\"open\",priority!=\"\"})",
+          "interval": "",
+          "legendFormat": "{{ priority }}",
+          "refId": "G"
         },
         {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "expr": "sum by (priority) (github_exporter_issue_info{repo=~\"$repo\",state=\"open\",priority=\"\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "(no priority)",
+          "refId": "A"
         }
       ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
+      "timeRegions": [],
+      "title": "Open Issues by Priority (P)",
+      "transformations": [],
+      "transparent": true,
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "breakPoint": "50%",
+      "combine": {
+        "label": "Others",
+        "threshold": "0.01"
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "",
+      "editable": true,
+      "fontSize": "100%",
+      "format": "short",
+      "gridPos": {
+        "h": 10,
+        "w": 6,
+        "x": 12,
+        "y": 22
+      },
+      "id": 24,
+      "legend": {
+        "header": "",
+        "percentage": false,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 1,
+      "nullPointMode": "connected",
+      "pieType": "donut",
+      "pluginVersion": "7.0.3",
+      "strokeWidth": "3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "expr": "sum by (team) (github_exporter_issue_info{repo=~\"$repo\",state=\"open\",team!=\"\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{ team }}",
+          "refId": "G"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "expr": "sum(github_exporter_issue_info{repo=~\"$repo\",state=\"open\",team=\"\"})",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "(no team)",
+          "refId": "A"
+        }
+      ],
+      "timeRegions": [],
+      "title": "Open Issues by Team",
+      "transformations": [],
+      "transparent": true,
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
+    },
+    {
+      "aliasColors": {},
+      "breakPoint": "50%",
+      "combine": {
+        "label": "Others",
+        "threshold": "0.01"
+      },
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "description": "",
+      "editable": true,
+      "fontSize": "100%",
+      "format": "short",
+      "gridPos": {
+        "h": 10,
+        "w": 6,
+        "x": 18,
+        "y": 22
+      },
+      "id": 21,
+      "legend": {
+        "header": "",
+        "percentage": false,
+        "show": true,
+        "sort": "current",
+        "sortDesc": true,
+        "values": true
+      },
+      "legendType": "Right side",
+      "links": [],
+      "maxDataPoints": 1,
+      "nullPointMode": "connected",
+      "pieType": "donut",
+      "pluginVersion": "7.0.3",
+      "strokeWidth": "3",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "expr": "sum by (author) (github_exporter_issue_info{repo=~\"$repo\",state=\"open\"})",
+          "interval": "",
+          "legendFormat": "{{ author }}",
+          "refId": "G"
+        }
+      ],
+      "timeRegions": [],
+      "title": "Open Issues by Author",
+      "transformations": [],
+      "transparent": true,
+      "type": "grafana-piechart-panel",
+      "valueName": "current"
     },
     {
       "collapsed": true,
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 24
+        "y": 32
       },
-      "id": 7,
+      "id": 27,
       "panels": [
         {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": null,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "description": "",
           "editable": true,
           "fieldConfig": {
             "defaults": {
-              "custom": {}
-            },
-            "overrides": []
-          },
-          "fill": 1,
-          "fillGradient": 5,
-          "gridPos": {
-            "h": 10,
-            "w": 12,
-            "x": 0,
-            "y": 25
-          },
-          "hiddenSeries": false,
-          "id": 4,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "connected",
-          "options": {
-            "dataLinks": []
-          },
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum by (repo) (github_exporter_pr_info{repo=~\"$repo\",state=\"open\"})",
-              "interval": "",
-              "legendFormat": "{{ repo }}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Open Pull Requests",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "transparent": true,
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
               "decimals": 0,
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": false
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "breakPoint": "50%",
-          "cacheTimeout": null,
-          "combine": {
-            "label": "Others",
-            "threshold": "0.01"
-          },
-          "datasource": null,
-          "description": "",
-          "editable": true,
-          "fieldConfig": {
-            "defaults": {
-              "custom": {},
               "mappings": [],
+              "max": 1,
+              "min": 0,
               "thresholds": {
-                "mode": "absolute",
+                "mode": "percentage",
                 "steps": [
                   {
-                    "color": "green",
+                    "color": "red",
                     "value": null
                   },
                   {
-                    "color": "red",
-                    "value": 80
+                    "color": "#EAB839",
+                    "value": 33
+                  },
+                  {
+                    "color": "green",
+                    "value": 66
                   }
                 ]
-              }
+              },
+              "unit": "percentunit"
             },
             "overrides": []
           },
-          "fontSize": "100%",
-          "format": "short",
           "gridPos": {
-            "h": 10,
-            "w": 6,
-            "x": 12,
-            "y": 25
+            "h": 12,
+            "w": 12,
+            "x": 0,
+            "y": 13
           },
-          "id": 16,
-          "interval": null,
-          "legend": {
-            "percentage": false,
-            "show": true,
-            "sort": "current",
-            "sortDesc": true,
-            "values": true
+          "id": 25,
+          "options": {
+            "displayMode": "lcd",
+            "minVizHeight": 10,
+            "minVizWidth": 0,
+            "orientation": "horizontal",
+            "reduceOptions": {
+              "calcs": [
+                "lastNotNull"
+              ],
+              "fields": "",
+              "values": false
+            },
+            "showUnfilled": true
           },
-          "legendType": "Right side",
-          "links": [],
-          "maxDataPoints": 1,
-          "nullPointMode": "connected",
-          "pieType": "donut",
-          "pluginVersion": "7.0.3",
-          "strokeWidth": "3",
+          "pluginVersion": "9.3.1",
           "targets": [
             {
-              "expr": "sum by (team) (github_exporter_pr_info{repo=~\"$repo\",state=\"open\",team!=\"\"})",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "expr": "github_exporter_milestone_info * on (repo, number) group_right(title) (:github_exporter_repo_open_milestone_completion:{repo=~\"$repo\"})",
               "interval": "",
-              "legendFormat": "{{ team }}",
-              "refId": "G"
-            },
-            {
-              "expr": "sum by (team) (github_exporter_pr_info{repo=~\"$repo\",state=\"open\",team=\"\"})",
-              "interval": "",
-              "legendFormat": "(no team)",
+              "legendFormat": "{{ repo }} / {{ title }}",
               "refId": "A"
             }
           ],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
-          "title": "Open Pull Requests By Team",
-          "transformations": [],
+          "title": "Open Milestone Completion",
           "transparent": true,
-          "type": "grafana-piechart-panel",
-          "valueName": "current"
-        },
-        {
-          "aliasColors": {},
-          "breakPoint": "50%",
-          "cacheTimeout": null,
-          "combine": {
-            "label": "Others",
-            "threshold": "0.01"
-          },
-          "datasource": null,
-          "description": "",
-          "editable": true,
-          "fieldConfig": {
-            "defaults": {
-              "custom": {},
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "fontSize": "100%",
-          "format": "short",
-          "gridPos": {
-            "h": 10,
-            "w": 6,
-            "x": 18,
-            "y": 25
-          },
-          "id": 14,
-          "interval": null,
-          "legend": {
-            "percentage": false,
-            "show": true,
-            "sort": "current",
-            "sortDesc": true,
-            "values": true
-          },
-          "legendType": "Right side",
-          "links": [],
-          "maxDataPoints": 1,
-          "nullPointMode": "connected",
-          "pieType": "donut",
-          "pluginVersion": "7.0.3",
-          "strokeWidth": "3",
-          "targets": [
-            {
-              "expr": "sum by (author) (github_exporter_pr_info{repo=~\"$repo\",state=\"open\"})",
-              "interval": "",
-              "legendFormat": "{{ author }}",
-              "refId": "G"
-            }
-          ],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Open Pull Requests By Author",
-          "transformations": [],
-          "transparent": true,
-          "type": "grafana-piechart-panel",
-          "valueName": "current"
+          "type": "bargauge"
         },
         {
           "aliasColors": {},
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
-          "description": "Percentage of pending PRs (WIP/hold/...) in relation to all open PRs in a given repository.",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "description": "",
           "editable": true,
           "fieldConfig": {
             "defaults": {
-              "custom": {}
+              "links": [],
+              "unit": "percentunit"
             },
             "overrides": []
           },
-          "fill": 1,
+          "fill": 0,
           "fillGradient": 5,
           "gridPos": {
-            "h": 10,
+            "h": 12,
             "w": 12,
-            "x": 0,
-            "y": 35
+            "x": 12,
+            "y": 13
           },
           "hiddenSeries": false,
-          "id": 19,
+          "id": 28,
           "legend": {
+            "alignAsTable": true,
             "avg": false,
             "current": false,
             "max": false,
             "min": false,
+            "rightSide": true,
             "show": true,
             "total": false,
             "values": false
@@ -916,9 +806,10 @@
           "linewidth": 1,
           "nullPointMode": "connected",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "9.3.1",
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
@@ -928,17 +819,19 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum by (repo) (github_exporter_pr_info{repo=~\"$repo\",state=\"open\",pending=\"true\"}) / sum by (repo) (github_exporter_pr_info{repo=~\"$repo\",state=\"open\"})",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "expr": "github_exporter_milestone_info * on (repo, number) group_right(title) (:github_exporter_repo_open_milestone_completion:{repo=~\"$repo\"})",
               "interval": "",
-              "legendFormat": "{{ repo }}",
+              "legendFormat": "{{ repo }} / {{ title }}",
               "refId": "A"
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
-          "title": "Pending Rate",
+          "title": "Open Milestone Completion",
           "tooltip": {
             "shared": true,
             "sort": 1,
@@ -947,220 +840,70 @@
           "transparent": true,
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
           "yaxes": [
             {
-              "decimals": 1,
+              "decimals": 0,
               "format": "percentunit",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
+              "max": "1",
+              "min": "0",
               "show": true
             },
             {
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": false
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
-        },
-        {
-          "aliasColors": {},
-          "breakPoint": "50%",
-          "cacheTimeout": null,
-          "combine": {
-            "label": "Others",
-            "threshold": "0.01"
-          },
-          "datasource": null,
-          "description": "",
-          "editable": true,
-          "fieldConfig": {
-            "defaults": {
-              "custom": {},
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "fontSize": "100%",
-          "format": "short",
-          "gridPos": {
-            "h": 10,
-            "w": 6,
-            "x": 12,
-            "y": 35
-          },
-          "id": 22,
-          "interval": null,
-          "legend": {
-            "percentage": false,
-            "show": true,
-            "sideWidth": null,
-            "sort": "current",
-            "sortDesc": true,
-            "values": true
-          },
-          "legendType": "Right side",
-          "links": [],
-          "maxDataPoints": 1,
-          "nullPointMode": "connected",
-          "pieType": "donut",
-          "pluginVersion": "7.0.3",
-          "strokeWidth": "3",
-          "targets": [
-            {
-              "expr": "sum by (size) (github_exporter_pr_info{repo=~\"$repo\",state=\"open\",size!=\"\"})",
-              "interval": "",
-              "legendFormat": "{{ size }}",
-              "refId": "G"
-            },
-            {
-              "expr": "sum by (size) (github_exporter_pr_info{repo=~\"$repo\",state=\"open\",size=\"\"})",
-              "interval": "",
-              "legendFormat": "(no size)",
-              "refId": "A"
-            }
-          ],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Open Pull Requests By Size",
-          "transformations": [],
-          "transparent": true,
-          "type": "grafana-piechart-panel",
-          "valueName": "current"
-        },
-        {
-          "aliasColors": {},
-          "breakPoint": "50%",
-          "cacheTimeout": null,
-          "combine": {
-            "label": "Others",
-            "threshold": "0.01"
-          },
-          "datasource": null,
-          "description": "",
-          "editable": true,
-          "fieldConfig": {
-            "defaults": {
-              "custom": {},
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "fontSize": "100%",
-          "format": "short",
-          "gridPos": {
-            "h": 10,
-            "w": 6,
-            "x": 18,
-            "y": 35
-          },
-          "id": 15,
-          "interval": null,
-          "legend": {
-            "percentage": false,
-            "show": true,
-            "sideWidth": null,
-            "sort": "current",
-            "sortDesc": true,
-            "values": true
-          },
-          "legendType": "Right side",
-          "links": [],
-          "maxDataPoints": 1,
-          "nullPointMode": "connected",
-          "pieType": "donut",
-          "pluginVersion": "7.0.3",
-          "strokeWidth": "3",
-          "targets": [
-            {
-              "expr": "sum by (priority) (github_exporter_pr_info{repo=~\"$repo\",state=\"open\",priority!=\"\"})",
-              "interval": "",
-              "legendFormat": "{{ priority }}",
-              "refId": "G"
-            },
-            {
-              "expr": "sum by (priority) (github_exporter_pr_info{repo=~\"$repo\",state=\"open\",priority=\"\"})",
-              "interval": "",
-              "legendFormat": "(no priority)",
-              "refId": "A"
-            }
-          ],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Open Pull Requests by Priority",
-          "transformations": [],
-          "transparent": true,
-          "type": "grafana-piechart-panel",
-          "valueName": "current"
         }
       ],
-      "title": "Pull Requests",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Milestones",
       "type": "row"
     },
     {
       "collapsed": true,
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 25
+        "y": 33
       },
-      "id": 18,
+      "id": 32,
       "panels": [
         {
           "aliasColors": {},
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "description": "",
           "editable": true,
           "fieldConfig": {
             "defaults": {
-              "custom": {}
+              "links": []
             },
             "overrides": []
           },
@@ -1168,12 +911,12 @@
           "fillGradient": 5,
           "gridPos": {
             "h": 10,
-            "w": 12,
+            "w": 6,
             "x": 0,
-            "y": 26
+            "y": 14
           },
           "hiddenSeries": false,
-          "id": 13,
+          "id": 33,
           "legend": {
             "avg": false,
             "current": false,
@@ -1187,9 +930,10 @@
           "linewidth": 1,
           "nullPointMode": "connected",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "9.3.1",
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
@@ -1199,17 +943,19 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum by (repo) (github_exporter_issue_info{repo=~\"$repo\",state=\"open\"})",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "expr": "sum by (repo) (github_exporter_repo_stargazers{repo=~\"$repo\"})",
               "interval": "",
               "legendFormat": "{{ repo }}",
               "refId": "A"
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
-          "title": "Open Issues",
+          "title": "Stargazers",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -1218,470 +964,24 @@
           "transparent": true,
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
           "yaxes": [
             {
-              "decimals": 0,
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             },
             {
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": false
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        },
-        {
-          "aliasColors": {},
-          "breakPoint": "50%",
-          "cacheTimeout": null,
-          "combine": {
-            "label": "Others",
-            "threshold": "0.01"
-          },
-          "datasource": null,
-          "description": "",
-          "editable": true,
-          "fieldConfig": {
-            "defaults": {
-              "custom": {},
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "fontSize": "100%",
-          "format": "short",
-          "gridPos": {
-            "h": 10,
-            "w": 6,
-            "x": 12,
-            "y": 26
-          },
-          "id": 23,
-          "interval": null,
-          "legend": {
-            "percentage": false,
-            "show": true,
-            "sort": "current",
-            "sortDesc": true,
-            "values": true
-          },
-          "legendType": "Right side",
-          "links": [],
-          "maxDataPoints": 1,
-          "nullPointMode": "connected",
-          "pieType": "donut",
-          "pluginVersion": "7.0.3",
-          "strokeWidth": "3",
-          "targets": [
-            {
-              "expr": "sum by (T) (github_exporter_issue_info{repo=~\"$repo\",state=\"open\",T!=\"\"})",
-              "interval": "",
-              "legendFormat": "{{ T }}",
-              "refId": "G"
-            },
-            {
-              "expr": "sum by (T) (github_exporter_issue_info{repo=~\"$repo\",state=\"open\",T=\"\"})",
-              "interval": "",
-              "legendFormat": "(no T)",
-              "refId": "A"
-            }
-          ],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Open Issues by Type (T)",
-          "transformations": [],
-          "transparent": true,
-          "type": "grafana-piechart-panel",
-          "valueName": "current"
-        },
-        {
-          "aliasColors": {},
-          "breakPoint": "50%",
-          "cacheTimeout": null,
-          "combine": {
-            "label": "Others",
-            "threshold": "0.01"
-          },
-          "datasource": null,
-          "description": "",
-          "editable": true,
-          "fieldConfig": {
-            "defaults": {
-              "custom": {},
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "fontSize": "100%",
-          "format": "short",
-          "gridPos": {
-            "h": 10,
-            "w": 6,
-            "x": 18,
-            "y": 26
-          },
-          "id": 20,
-          "interval": null,
-          "legend": {
-            "percentage": false,
-            "show": true,
-            "sort": "current",
-            "sortDesc": true,
-            "values": true
-          },
-          "legendType": "Right side",
-          "links": [],
-          "maxDataPoints": 1,
-          "nullPointMode": "connected",
-          "pieType": "donut",
-          "pluginVersion": "7.0.3",
-          "strokeWidth": "3",
-          "targets": [
-            {
-              "expr": "sum by (priority) (github_exporter_issue_info{repo=~\"$repo\",state=\"open\",priority!=\"\"})",
-              "interval": "",
-              "legendFormat": "{{ priority }}",
-              "refId": "G"
-            },
-            {
-              "expr": "sum by (priority) (github_exporter_issue_info{repo=~\"$repo\",state=\"open\",priority=\"\"})",
-              "hide": false,
-              "interval": "",
-              "legendFormat": "(no priority)",
-              "refId": "A"
-            }
-          ],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Open Issues by Priority (P)",
-          "transformations": [],
-          "transparent": true,
-          "type": "grafana-piechart-panel",
-          "valueName": "current"
-        },
-        {
-          "aliasColors": {},
-          "breakPoint": "50%",
-          "cacheTimeout": null,
-          "combine": {
-            "label": "Others",
-            "threshold": "0.01"
-          },
-          "datasource": null,
-          "description": "",
-          "editable": true,
-          "fieldConfig": {
-            "defaults": {
-              "custom": {},
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "fontSize": "100%",
-          "format": "short",
-          "gridPos": {
-            "h": 10,
-            "w": 6,
-            "x": 12,
-            "y": 36
-          },
-          "id": 24,
-          "interval": null,
-          "legend": {
-            "header": "",
-            "percentage": false,
-            "show": true,
-            "sort": "current",
-            "sortDesc": true,
-            "values": true
-          },
-          "legendType": "Right side",
-          "links": [],
-          "maxDataPoints": 1,
-          "nullPointMode": "connected",
-          "pieType": "donut",
-          "pluginVersion": "7.0.3",
-          "strokeWidth": "3",
-          "targets": [
-            {
-              "expr": "sum by (team) (github_exporter_issue_info{repo=~\"$repo\",state=\"open\",team!=\"\"})",
-              "hide": false,
-              "interval": "",
-              "legendFormat": "{{ team }}",
-              "refId": "G"
-            },
-            {
-              "expr": "sum(github_exporter_issue_info{repo=~\"$repo\",state=\"open\",team=\"\"})",
-              "hide": false,
-              "interval": "",
-              "legendFormat": "(no team)",
-              "refId": "A"
-            }
-          ],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Open Issues by Team",
-          "transformations": [],
-          "transparent": true,
-          "type": "grafana-piechart-panel",
-          "valueName": "current"
-        },
-        {
-          "aliasColors": {},
-          "breakPoint": "50%",
-          "cacheTimeout": null,
-          "combine": {
-            "label": "Others",
-            "threshold": "0.01"
-          },
-          "datasource": null,
-          "description": "",
-          "editable": true,
-          "fieldConfig": {
-            "defaults": {
-              "custom": {},
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "fontSize": "100%",
-          "format": "short",
-          "gridPos": {
-            "h": 10,
-            "w": 6,
-            "x": 18,
-            "y": 36
-          },
-          "id": 21,
-          "interval": null,
-          "legend": {
-            "header": "",
-            "percentage": false,
-            "show": true,
-            "sort": "current",
-            "sortDesc": true,
-            "values": true
-          },
-          "legendType": "Right side",
-          "links": [],
-          "maxDataPoints": 1,
-          "nullPointMode": "connected",
-          "pieType": "donut",
-          "pluginVersion": "7.0.3",
-          "strokeWidth": "3",
-          "targets": [
-            {
-              "expr": "sum by (author) (github_exporter_issue_info{repo=~\"$repo\",state=\"open\"})",
-              "interval": "",
-              "legendFormat": "{{ author }}",
-              "refId": "G"
-            }
-          ],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "Open Issues by Author",
-          "transformations": [],
-          "transparent": true,
-          "type": "grafana-piechart-panel",
-          "valueName": "current"
-        }
-      ],
-      "title": "Issues",
-      "type": "row"
-    },
-    {
-      "collapsed": true,
-      "datasource": null,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 26
-      },
-      "id": 9,
-      "panels": [
-        {
-          "aliasColors": {},
-          "bars": false,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": null,
-          "description": "",
-          "editable": true,
-          "fieldConfig": {
-            "defaults": {
-              "custom": {}
-            },
-            "overrides": []
-          },
-          "fill": 1,
-          "fillGradient": 5,
-          "gridPos": {
-            "h": 10,
-            "w": 6,
-            "x": 0,
-            "y": 27
-          },
-          "hiddenSeries": false,
-          "id": 5,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "nullPointMode": "null",
-          "options": {
-            "dataLinks": []
-          },
-          "percentage": false,
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": true,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "sum (github_exporter_pr_queue_size{repo=~\"$repo\"})",
-              "interval": "",
-              "legendFormat": "Pull Requests",
-              "refId": "A"
-            },
-            {
-              "expr": "sum (github_exporter_issue_queue_size{repo=~\"$repo\"})",
-              "interval": "",
-              "legendFormat": "Issues",
-              "refId": "B"
-            },
-            {
-              "expr": "sum (github_exporter_milestone_queue_size{repo=~\"$repo\"})",
-              "interval": "",
-              "legendFormat": "Milestones",
-              "refId": "C"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "All Queues",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "transparent": true,
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "decimals": 0,
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": false
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
         },
         {
@@ -1689,12 +989,15 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "description": "",
           "editable": true,
           "fieldConfig": {
             "defaults": {
-              "custom": {}
+              "links": []
             },
             "overrides": []
           },
@@ -1704,10 +1007,10 @@
             "h": 10,
             "w": 6,
             "x": 6,
-            "y": 27
+            "y": 14
           },
           "hiddenSeries": false,
-          "id": 30,
+          "id": 35,
           "legend": {
             "avg": false,
             "current": false,
@@ -1719,11 +1022,12 @@
           },
           "lines": true,
           "linewidth": 1,
-          "nullPointMode": "null",
+          "nullPointMode": "connected",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "9.3.1",
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
@@ -1733,17 +1037,19 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum by (repo) (github_exporter_pr_queue_size{repo=~\"$repo\"})",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "expr": "sum by (repo) (github_exporter_repo_forks{repo=~\"$repo\"})",
               "interval": "",
               "legendFormat": "{{ repo }}",
               "refId": "A"
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
-          "title": "Pull Requests - Queue Size",
+          "title": "Forks",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -1752,34 +1058,24 @@
           "transparent": true,
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
           "yaxes": [
             {
-              "decimals": 0,
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": "0",
               "show": true
             },
             {
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": true
+              "show": false
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
         },
         {
@@ -1787,12 +1083,15 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "description": "",
           "editable": true,
           "fieldConfig": {
             "defaults": {
-              "custom": {}
+              "links": []
             },
             "overrides": []
           },
@@ -1802,10 +1101,10 @@
             "h": 10,
             "w": 6,
             "x": 12,
-            "y": 27
+            "y": 14
           },
           "hiddenSeries": false,
-          "id": 12,
+          "id": 34,
           "legend": {
             "avg": false,
             "current": false,
@@ -1817,11 +1116,12 @@
           },
           "lines": true,
           "linewidth": 1,
-          "nullPointMode": "null",
+          "nullPointMode": "connected",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "9.3.1",
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
@@ -1831,17 +1131,19 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum by (repo) (github_exporter_issue_queue_size{repo=~\"$repo\"})",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "expr": "sum by (repo) (github_exporter_repo_watchers{repo=~\"$repo\"})",
               "interval": "",
               "legendFormat": "{{ repo }}",
               "refId": "A"
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
-          "title": "Issues - Queue Size",
+          "title": "Watchers",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -1850,34 +1152,24 @@
           "transparent": true,
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
           "yaxes": [
             {
-              "decimals": 0,
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": "0",
               "show": true
             },
             {
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": false
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
         },
         {
@@ -1885,12 +1177,15 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "description": "",
           "editable": true,
           "fieldConfig": {
             "defaults": {
-              "custom": {}
+              "links": []
             },
             "overrides": []
           },
@@ -1900,10 +1195,10 @@
             "h": 10,
             "w": 6,
             "x": 18,
-            "y": 27
+            "y": 14
           },
           "hiddenSeries": false,
-          "id": 29,
+          "id": 36,
           "legend": {
             "avg": false,
             "current": false,
@@ -1915,11 +1210,12 @@
           },
           "lines": true,
           "linewidth": 1,
-          "nullPointMode": "null",
+          "nullPointMode": "connected",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "9.3.1",
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
@@ -1929,17 +1225,19 @@
           "steppedLine": false,
           "targets": [
             {
-              "expr": "sum by (repo) (github_exporter_milestone_queue_size{repo=~\"$repo\"})",
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "expr": "sum by (repo) (github_exporter_repo_disk_usage_bytes{repo=~\"$repo\"})",
               "interval": "",
               "legendFormat": "{{ repo }}",
               "refId": "A"
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
-          "title": "Milestones - Queue Size",
+          "title": "Disk Usage",
           "tooltip": {
             "shared": true,
             "sort": 2,
@@ -1948,48 +1246,176 @@
           "transparent": true,
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
           "yaxes": [
             {
-              "decimals": 0,
-              "format": "short",
-              "label": null,
+              "format": "bytes",
               "logBase": 1,
-              "max": null,
+              "show": true
+            },
+            {
+              "format": "short",
+              "logBase": 1,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false
+          }
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "General Information",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 34
+      },
+      "id": 38,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "description": "",
+          "fieldConfig": {
+            "defaults": {
+              "links": []
+            },
+            "overrides": []
+          },
+          "fill": 1,
+          "fillGradient": 5,
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 15
+          },
+          "hiddenSeries": false,
+          "id": 39,
+          "legend": {
+            "avg": false,
+            "current": false,
+            "max": false,
+            "min": false,
+            "show": true,
+            "total": false,
+            "values": false
+          },
+          "lines": true,
+          "linewidth": 1,
+          "links": [],
+          "maxPerRow": 3,
+          "nullPointMode": "connected",
+          "options": {
+            "alertThreshold": true
+          },
+          "percentage": false,
+          "pluginVersion": "9.3.1",
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "repeat": "repo",
+          "repeatDirection": "h",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
+              "expr": "github_exporter_repo_language_size_bytes{repo=\"$repo\"}",
+              "instant": false,
+              "interval": "",
+              "legendFormat": "{{ language }}",
+              "refId": "A"
+            }
+          ],
+          "thresholds": [],
+          "timeRegions": [],
+          "title": "$repo",
+          "tooltip": {
+            "shared": true,
+            "sort": 2,
+            "value_type": "individual"
+          },
+          "transparent": true,
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "format": "bytes",
+              "logBase": 1,
               "min": "0",
               "show": true
             },
             {
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": false
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
         }
       ],
-      "title": "Queue Statistics",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "refId": "A"
+        }
+      ],
+      "title": "Languages",
       "type": "row"
     },
     {
       "collapsed": true,
-      "datasource": null,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "PBFA97CFB590B2093"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 27
+        "y": 35
       },
       "id": 11,
       "panels": [
@@ -1998,12 +1424,15 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "description": "",
           "editable": true,
           "fieldConfig": {
             "defaults": {
-              "custom": {}
+              "links": []
             },
             "overrides": []
           },
@@ -2013,7 +1442,7 @@
             "h": 10,
             "w": 12,
             "x": 0,
-            "y": 28
+            "y": 16
           },
           "hiddenSeries": false,
           "id": 3,
@@ -2030,9 +1459,10 @@
           "linewidth": 1,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "9.3.1",
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
@@ -2042,6 +1472,10 @@
           "steppedLine": false,
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
               "expr": "sum by (repo) (rate(github_exporter_api_requests_total{repo=~\"$repo\"}[60m]))",
               "interval": "",
               "legendFormat": "{{ repo }}",
@@ -2049,9 +1483,7 @@
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
           "title": "API Request Rate",
           "tooltip": {
             "shared": true,
@@ -2061,9 +1493,7 @@
           "transparent": true,
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
@@ -2071,24 +1501,17 @@
             {
               "decimals": 2,
               "format": "reqps",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             },
             {
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": false
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
         },
         {
@@ -2096,12 +1519,15 @@
           "bars": false,
           "dashLength": 10,
           "dashes": false,
-          "datasource": null,
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
           "description": "",
           "editable": true,
           "fieldConfig": {
             "defaults": {
-              "custom": {}
+              "links": []
             },
             "overrides": []
           },
@@ -2111,7 +1537,7 @@
             "h": 10,
             "w": 12,
             "x": 12,
-            "y": 28
+            "y": 16
           },
           "hiddenSeries": false,
           "id": 2,
@@ -2128,9 +1554,10 @@
           "linewidth": 1,
           "nullPointMode": "null",
           "options": {
-            "dataLinks": []
+            "alertThreshold": true
           },
           "percentage": false,
+          "pluginVersion": "9.3.1",
           "pointradius": 2,
           "points": false,
           "renderer": "flot",
@@ -2140,6 +1567,10 @@
           "steppedLine": false,
           "targets": [
             {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "PBFA97CFB590B2093"
+              },
               "expr": "github_exporter_api_points_remaining",
               "interval": "",
               "legendFormat": "points",
@@ -2147,9 +1578,7 @@
             }
           ],
           "thresholds": [],
-          "timeFrom": null,
           "timeRegions": [],
-          "timeShift": null,
           "title": "API Points Remaining",
           "tooltip": {
             "shared": true,
@@ -2159,185 +1588,60 @@
           "transparent": true,
           "type": "graph",
           "xaxis": {
-            "buckets": null,
             "mode": "time",
-            "name": null,
             "show": true,
             "values": []
           },
           "yaxes": [
             {
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": true
             },
             {
               "format": "short",
-              "label": null,
               "logBase": 1,
-              "max": null,
-              "min": null,
               "show": false
             }
           ],
           "yaxis": {
-            "align": false,
-            "alignLevel": null
+            "align": false
           }
+        }
+      ],
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "PBFA97CFB590B2093"
+          },
+          "refId": "A"
         }
       ],
       "title": "API Client",
       "type": "row"
-    },
-    {
-      "collapsed": true,
-      "datasource": null,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 28
-      },
-      "id": 38,
-      "panels": [
-        {
-          "aliasColors": {},
-          "bars": false,
-          "cacheTimeout": null,
-          "dashLength": 10,
-          "dashes": false,
-          "datasource": null,
-          "description": "",
-          "fieldConfig": {
-            "defaults": {
-              "custom": {},
-              "mappings": [],
-              "thresholds": {
-                "mode": "absolute",
-                "steps": [
-                  {
-                    "color": "green",
-                    "value": null
-                  },
-                  {
-                    "color": "red",
-                    "value": 80
-                  }
-                ]
-              }
-            },
-            "overrides": []
-          },
-          "fill": 1,
-          "fillGradient": 5,
-          "gridPos": {
-            "h": 10,
-            "w": 12,
-            "x": 0,
-            "y": 29
-          },
-          "hiddenSeries": false,
-          "id": 39,
-          "interval": null,
-          "legend": {
-            "avg": false,
-            "current": false,
-            "max": false,
-            "min": false,
-            "show": true,
-            "total": false,
-            "values": false
-          },
-          "lines": true,
-          "linewidth": 1,
-          "links": [],
-          "maxPerRow": 3,
-          "nullPointMode": "connected",
-          "options": {
-            "dataLinks": []
-          },
-          "percentage": false,
-          "pluginVersion": "7.0.3",
-          "pointradius": 2,
-          "points": false,
-          "renderer": "flot",
-          "repeat": "repo",
-          "repeatDirection": "h",
-          "scopedVars": {},
-          "seriesOverrides": [],
-          "spaceLength": 10,
-          "stack": false,
-          "steppedLine": false,
-          "targets": [
-            {
-              "expr": "github_exporter_repo_language_size_bytes{repo=\"$repo\"}",
-              "instant": false,
-              "interval": "",
-              "legendFormat": "{{ language }}",
-              "refId": "A"
-            }
-          ],
-          "thresholds": [],
-          "timeFrom": null,
-          "timeRegions": [],
-          "timeShift": null,
-          "title": "$repo",
-          "tooltip": {
-            "shared": true,
-            "sort": 2,
-            "value_type": "individual"
-          },
-          "transparent": true,
-          "type": "graph",
-          "xaxis": {
-            "buckets": null,
-            "mode": "time",
-            "name": null,
-            "show": true,
-            "values": []
-          },
-          "yaxes": [
-            {
-              "decimals": null,
-              "format": "bytes",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": "0",
-              "show": true
-            },
-            {
-              "format": "short",
-              "label": null,
-              "logBase": 1,
-              "max": null,
-              "min": null,
-              "show": false
-            }
-          ],
-          "yaxis": {
-            "align": false,
-            "alignLevel": null
-          }
-        }
-      ],
-      "title": "Languages",
-      "type": "row"
     }
   ],
   "refresh": "1m",
-  "schemaVersion": 25,
+  "schemaVersion": 37,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
-        "allValue": null,
-        "current": {},
-        "datasource": "Prometheus",
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "PBFA97CFB590B2093"
+        },
         "definition": "label_values(github_exporter_repo_stargazers, repo)",
         "hide": 0,
         "includeAll": true,
@@ -2345,13 +1649,15 @@
         "multi": true,
         "name": "repo",
         "options": [],
-        "query": "label_values(github_exporter_repo_stargazers, repo)",
+        "query": {
+          "query": "label_values(github_exporter_repo_stargazers, repo)",
+          "refId": "Prometheus-repo-Variable-Query"
+        },
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 5,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -2359,7 +1665,7 @@
     ]
   },
   "time": {
-    "from": "now-1d",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {
@@ -2378,5 +1684,6 @@
   "timezone": "",
   "title": "GitHub",
   "uid": "UGK4RFiGk",
-  "version": 1
+  "version": 1,
+  "weekStart": ""
 }
